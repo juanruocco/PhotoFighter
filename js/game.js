@@ -7,7 +7,7 @@ var canvas = null,
 
 var elapsedTime = 0;
 var elapsedTimeForAnimation = 0;
-var player1 = new Player(20,0,500,800,'tomas/spritesheet2.png');
+var player1 = new Player(Config.Characters.tomas,20,0,500,800);
 var fondo = null;
 var KEY_ENTER = 13,
     KEY_LEFT = 37,
@@ -68,9 +68,7 @@ function paint(ctx){
     ctx.drawImage(fondo, 0, 0);
 
 
-    player1.drawImage(ctx);
-
-    player1.updateGraphics(ctx);
+    player1.updateGraphics(ctx,elapsedTime);
 
   }
 
@@ -80,7 +78,10 @@ document.addEventListener('keydown', function (evt)
   lastPress = evt.which;
   if(player1.action == null) {
     player1.action = evt.which;
+    player1.event(evt.which);
   }
+
+
 
   pressing[evt.which] = true;
 }, false);

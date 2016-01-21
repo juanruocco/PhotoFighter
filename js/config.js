@@ -2,15 +2,16 @@ var Config = {
   Characters: {
     tomas: {
       name: 'Tomas',
+      folder: 'assets/tomas/',
       states: {
         default: 'wait',
         wait: {
-          bg: 'wait',
-          framesNum: 6
+          sprite_sheet: 'wait.png',
+          frames: 1
         },
         walk: {
-          bg: 'walk',
-          framesNum:6
+          sprite_sheet: 'walk.png',
+          frames:6
         }
       },
       keyMap: {
