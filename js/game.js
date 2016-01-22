@@ -7,7 +7,7 @@ var canvas = null,
 
 var elapsedTime = 0;
 var elapsedTimeForAnimation = 0;
-var player1 = new Player(Config.Characters.tomas,20,0,500,800);
+var player1 = new Player(Config.Characters.tomas,20,120,500,454);
 var fondo = null;
 var KEY_ENTER = 13,
     KEY_LEFT = 37,
@@ -34,8 +34,8 @@ function init(){
 
 
 function run() {
-  setTimeout(run, 50);
-  act(0.05);
+  setTimeout(run, 17);
+  act(0.017);
 }
 
 function act(deltaTime) {

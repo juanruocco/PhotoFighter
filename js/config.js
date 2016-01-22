@@ -6,13 +6,33 @@ var Config = {
       states: {
         default: 'wait',
         wait: {
-          sprite_sheet: 'wait.png',
-          frames: 1
+          sprite_sheet: 'walk.png',
+          sprite_frame_width: 500,
+          sprite_frame_height: 454,
+          sprite_frame_xOffset: 0,
+          sprite_frame_yOffset: 0,
+          frames: 1,
+          frameForSecond:30
         },
         walk: {
           sprite_sheet: 'walk.png',
-          frames:6
+          sprite_frame_width: 500,
+          sprite_frame_height: 454,
+          sprite_frame_xOffset: 0,
+          sprite_frame_yOffset: 0,
+          frames:6,
+          frameForSecond:30
+        },
+        light_boxing: {
+          sprite_sheet: 'light_boxing.png',
+          sprite_frame_width: 279.6875,
+          sprite_frame_height: 454,
+          sprite_frame_xOffset: 85,
+          sprite_frame_yOffset: 0,
+          frames:18,
+          frameForSecond:60
         }
+
       },
       keyMap: {
         mapping: {
