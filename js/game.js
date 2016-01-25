@@ -13,7 +13,11 @@ var KEY_ENTER = 13,
     KEY_LEFT = 37,
     KEY_UP = 38,
     KEY_RIGHT = 39,
-    KEY_DOWN = 40;
+    KEY_DOWN = 40,
+    KICK_STRONG = 74,
+    KICK_SOFT = 75,
+    PUNCH_STRONG = 85,
+    PUNCH_SOFT = 73;
 
 
 window.requestAnimationFrame = (function ()

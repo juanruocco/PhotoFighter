@@ -8,7 +8,9 @@ function Player(config,x,y,width,height,scale)
   this.currentState = this.defaultState;
   this.nextState = null;
   this.x=(x==null)?0:x;
+  this.lastX = x;
   this.y=(y==null)?0:y;
+  this.lastY = y;
   this.width=(width==null)?0:width;
   this.height=(height==null)?this.width:height;
   this.scale = scale;
@@ -24,6 +26,8 @@ Player.prototype.configAnimation=function() {
 
   this.currentFrame = 1;
   timeForAnimation = elapsedTime;
+  this.lastX = this.x;
+  this.lastY = this.y;
 }
 
 
@@ -52,13 +56,18 @@ Player.prototype.drawImage=function(ctx){
 Player.prototype.event = function(event){
   if (event == KEY_RIGHT )
   {
-    //this.x += 10;
-    this.nextState = this.config.states.walk;
+    this.nextState = this.config.states.forward;
   }
-  if (event == KEY_UP)
+  if (event == KEY_LEFT )
+  {
+    this.nextState = this.config.states.backward;
+  }
+  if (event == PUNCH_STRONG)
   {
     this.nextState = this.config.states.light_boxing;
-
+  }
+  if (event == KEY_UP){
+    this.nextState = this.config.states.jump;
   }
 }
 
@@ -83,12 +92,14 @@ Player.prototype.eventKeyboard = function(pressing){
 }
 
 Player.prototype.updateGraphics = function(context,time) {
-  framesForSecond = 1;
+  framesForSecond = this.currentState.frameForSecond;
   frames = this.currentState.frames + 1;
 
   // if (this.currentFrame != (~~((time-timeForAnimation)*framesForSecond)%frames + 1)){
   //   console.log("other Frame"+  (~~((time-timeForAnimation)*framesForSecond)%frames + 1));
   // }
+
+
   this.currentFrame = ~~((time-timeForAnimation)*framesForSecond)%frames + 1;
 
   if (this.currentFrame >= frames){
@@ -102,6 +113,11 @@ Player.prototype.updateGraphics = function(context,time) {
   }
 
   if(this.currentFrame < frames){
-    player1.drawImage(context);
+    this.drawImage(context);
+    var distanceX = this.currentState.distanceX;
+    if (distanceX != null){
+      this.x = this.lastX + distanceX*(this.currentFrame - 1)/frames;
+    }
+
   }
 }
